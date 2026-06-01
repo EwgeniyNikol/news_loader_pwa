@@ -1,20 +1,21 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const slow = require('koa-slow');
-const cors = require('koa-cors');
 const path = require('path');
 const serve = require('koa-static');
 
 const app = new Koa();
 const router = new Router();
 
-app.use(cors());
-
 app.use(slow({
   delay: 2000
 }));
 
-app.use(serve(path.join(__dirname, '../public')));
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Methods', 'GET');
+  await next();
+});
 
 router.get('/', async (ctx) => {
   ctx.body = 'API server is running';
@@ -39,6 +40,8 @@ router.get('/api/news', async (ctx) => {
 
 app.use(router.routes());
 app.use(router.allowedMethods());
+
+app.use(serve(path.join(__dirname, '../public')));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
