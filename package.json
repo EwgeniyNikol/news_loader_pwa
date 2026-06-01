@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "build": "webpack --mode production",
-  "dev": "webpack --mode development",
-  "start": "node server/index.js",
-  "server": "node server/index.js"
-},
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "node server/index.js",
+    "server": "node server/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EwgeniyNikol/news_loader_pwa.git"
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "koa": "^3.2.1",
+    "koa-cors": "^0.0.16",
     "koa-router": "^14.0.0",
     "koa-slow": "^2.1.0",
     "koa-static": "^5.0.0"

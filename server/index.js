@@ -1,11 +1,14 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const slow = require('koa-slow');
+const cors = require('koa-cors');
 const path = require('path');
 const serve = require('koa-static');
 
 const app = new Koa();
 const router = new Router();
+
+app.use(cors());
 
 app.use(slow({
   delay: 2000
