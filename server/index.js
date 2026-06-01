@@ -13,6 +13,10 @@ app.use(slow({
 
 app.use(serve(path.join(__dirname, '../public')));
 
+router.get('/', async (ctx) => {
+  ctx.body = 'API server is running';
+});
+
 router.get('/api/news', async (ctx) => {
   ctx.body = [
     {
